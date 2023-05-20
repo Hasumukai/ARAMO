@@ -185,17 +185,15 @@ set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap 
 GNUTERM = "qt"
 
 ## Last datafile plotted: "ttt.dat"
-set out "/home/kunitofukuda/WorkSpace/Meteor/data/outputfile.png"
-#set terminal pngcairo  size 629, 400 background rgb 'black' font "Helvetica,8"
+set out "~/Meteor/data/outputfile.png"
 set terminal png  size 629, 400 background rgb 'black' font "Helvetica,8"
-#set terminal qt 0 font "Helvetica,8"
 set label 1 at screen  0.05,0.98 "KROFFT" tc rgb "green"
 set label 2 at screen  0.05,0.95 "outputfile.png" tc rgb "yellow"
 set label 3 at screen  0.05,0.92 "writetime" tc rgb "yellow"
-set label 4 at screen  0.23,0.98 "Observer : K. FUKUDA" tc rgb "yellow"
-set label 5 at screen  0.23,0.95 "receving Location : Kiryu-City, Gunma, Japan (139.2E 36.2N)" tc rgb "yellow"
-set label 6 at screen  0.23,0.92 "Recever : RTL-SDR Blog V3 R820T2 RTL2832U 1PPM (89.4MHz - 900Hz) USB" tc rgb "yellow"
-set label 7 at screen  0.23,0.89 "Receving antenna : Loop Antena" tc rgb "yellow"
+set label 4 at screen  0.23,0.98 "Observer : Name" tc rgb "yellow"
+set label 5 at screen  0.23,0.95 "receving Location : XX (XX.XE XX.XN)" tc rgb "yellow"
+set label 6 at screen  0.23,0.92 "Recever : XX (89.4MHz - 900Hz) USB" tc rgb "yellow"
+set label 7 at screen  0.23,0.89 "Receving antenna : XX" tc rgb "yellow"
 set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
 set label 9 at screen  0.095,0.82 "t1" tc rgb "yellow"
@@ -217,27 +215,15 @@ set tmargin screen 0.80
 set bmargin screen 0.048
 set tics out
 unset border
-#set x2tics border in scale 1,0.5 nomirror norotate  autojustify
-#set xrange [0:600]
-#set x2range [0:600]
 set link x2
 set format x ""
-#set ylabel 'Freq. [kHz]' tc rgb 'white'
 set format y "%1.1f"
 set ytics 0.1 textcolor rgb "yellow"
-#set ytics offset 2.5, screen 0.00
 set ytics offset 1.9, 0
 set ticscale 0.3
 set mytics 5
 set border 0 lc rgb 'yellow'
-#unset colorbox
-#set format x2 "% h" 
-#unset xtics
 set x2tics axis ("" 0)
-#set xtics 0,60
-#set link x via x inverse x
-#set xtics axis ("" 0, "23:31" 60, "23:32" 120, "23:33" 180, "23:34" 240, "23:35" 300, "23:36" 360, "23:37" 420, "23:38" 480, "23:39" 540, "" 600)
-#set x2tics axis ("" 0, "100" 60)
 splot "/tmp/spectrogram.dat" usi ($1):($2*1e-3):3 with pm3d ti ""
 
 set lmargin screen 0.03
@@ -245,19 +231,12 @@ set rmargin screen 0.9864
 set tmargin screen 0.072
 set bmargin screen 0.00
 unset border 
-#unset colorbox
 set tics in
 set yrange [0:900]
-#set ytics 300
 unset ytics
-#set ylabel 'intensity [arb]' tc rgb 'white'
-#set ylabel 'intensity [arb]'
 set ylabel ''
-#set format x ""
-#set format x2 ""
 unset xtics
 unset x2tics
-#set xtics ("23:30" 0, "23:31" 60, "23:32" 120, "23:33" 180, "23:34" 240, "23:35" 300, "23:36" 360, "23:37" 420, "23:38" 480, "23:39" 540, "23:40" 600)
 plot \
 300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
 "/tmp/Meteor_intensity.dat" usi ($1+0):($2/3) with boxes ti "" lc rgb "#55ff55"
@@ -265,5 +244,3 @@ plot \
 unset multiplot
 
 #    EOF
-
-#pause -1

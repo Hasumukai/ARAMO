@@ -179,54 +179,47 @@ set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "qt"
 ## Last datafile plotted: "ttt.dat"
-#set terminal sixelgd crop
-#set mono
-#unset colorbox
-set tics out
-#set out "./data/outputfile.png"
-#set out "./data/outputfile.pdf"
 
-#pause 7     #停止時間
+set tics out
 
 set terminal qt 0  enhanced font "Helvetica,8"
 set object 1 rect behind from screen 0,0 to screen 1,1 back fc rgb "#000000" fs solid
-#set terminal qt 0 font "Helvetica,8"
-set label 1 at screen  0.05,0.95 "\n\n outputfile.png\n writetime" tc rgb "white"
-set label 2 at screen  0.23,0.95 " Observer : K. FUKUDA\n receving Location : Kiryu-City, Gunma, Japan (139.2E 36.2N)\n Recever : RTL-SDR Blog V3 R820T2 RTL2832U 1PPM TCXO HF (89.4MHz-860Hz)\n Receving antenna : dipole (314d)" tc rgb "white"
-#set label 1 at screen  0.05,0.95 "\n\n outputfile.pdf\n writetime"
-#set label 2 at screen  0.23,0.95 " Observer : Kunito FUKUDA\n receving Location : Osaka-City, Osaka, Japan (135.5E 34.7N)\n Recever : RTL-SDR Blog V3 R820T2 RTL2832U 1PPM TCXO HF (97MHz)\n Receving antenna : dipole 1.4m (314d)" 
+set label 1 at screen  0.05,0.98 "KROFFT" tc rgb "green"
+set label 2 at screen  0.05,0.95 "outputfile.png" tc rgb "yellow"
+set label 3 at screen  0.05,0.92 "writetime" tc rgb "yellow"
+set label 4 at screen  0.23,0.98 "Observer : Name" tc rgb "yellow"
+set label 5 at screen  0.23,0.95 "receving Location : XX (XX.XE XX.XN)" tc rgb "yellow"
+set label 6 at screen  0.23,0.92 "Recever : XX (89.4MHz - 900Hz) USB" tc rgb "yellow"
+set label 7 at screen  0.23,0.89 "Receving antenna : XX" tc rgb "yellow"
+set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
-#set multiplot
-#set multiplot layout 2,1
+set label 9 at screen  0.095,0.82 "t1" tc rgb "yellow"
+set label 10 at screen 0.191,0.82 "t2" tc rgb "yellow"
+set label 11 at screen 0.287,0.82 "t3" tc rgb "yellow"
+set label 12 at screen 0.383,0.82 "t4" tc rgb "yellow"
+set label 13 at screen 0.479,0.82 "t5" tc rgb "yellow"
+set label 14 at screen 0.576,0.82 "t6" tc rgb "yellow"
+set label 15 at screen 0.672,0.82 "t7" tc rgb "yellow"
+set label 16 at screen 0.768,0.82 "t8" tc rgb "yellow"
+set label 17 at screen 0.864,0.82 "t9" tc rgb "yellow"
+set label 18 at screen 0.96,0.82 "t10" tc rgb "yellow"
 
-set lmargin screen 0.1
-set rmargin screen 0.95
-set tmargin screen 0.82
-set bmargin screen 0.22
-#set xrange [0:600]
-#set format x ""
-set ylabel 'Freq. [Hz]' tc rgb 'white'
-#set ylabel 'Freq. [Hz]'
-set ytics 100
-set border lc rgb 'white'
-unset colorbox
-set xtics ("t0" 0, "t1" 60, "t2" 120, "t3" 180, "t4" 240, "t5" 300, "t6" 360, "t7" 420, "t8" 480, "t9" 540, "t10" 600)
-splot "/tmp/spectrogram.dat" usi ($1+zero_t):2:3 with pm3d ti ""
-
-#set lmargin screen 0.1
-#set rmargin screen 0.95
-#set tmargin screen 0.22
-#set bmargin screen 0.12
-#unset colorbox
-#set yrange [0:890]
-#set ytics 300
-##set ylabel 'intensity [arb]' tc rgb 'white'
-##set ylabel 'intensity [arb]'
-#set ylabel ''
-#set xtics ("t1" 0, "t2" 60, "t3" 120, "t4" 180, "t5" 240, "t6" 300, "t7" 360, "t8" 420, "t9" 480, "t10" 540, "t11" 600)
-#plot "Meteor_intensity.dat" with boxes ti "" lc rgb "#555555"
-#
-#unset multiplot
+set lmargin screen 0.03
+set rmargin screen 0.9864
+set tmargin screen 0.80
+set bmargin screen 0.048
+set tics out
+unset border
+set link x2
+set format x ""
+set format y "%1.1f"
+set ytics 0.1 textcolor rgb "yellow"
+set ytics offset 1.9, 0
+set ticscale 0.3
+set mytics 5
+set border 0 lc rgb 'yellow'
+set x2tics axis ("" 0)
+splot "/tmp/spectrogram.dat" usi ($1):($2*1e-3):3 with pm3d ti ""
 
 #    EOF
 
