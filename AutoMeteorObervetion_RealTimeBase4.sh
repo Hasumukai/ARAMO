@@ -67,7 +67,7 @@ TIME_Observ=`expr 600 - $zero_t`
 rec -q /tmp/$FILE rate $SRATE channels 1 gain 10 trim 0 $TIME_Observ &
 
 #Real time
-#N=`expr 599 - $zero_t`
+N=`expr 599 - $zero_t`
 ##cp ~/workspace/meteor/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 ##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 #cp $main_path/spectrogram_RealTime_v2.plt /tmp/ttt.plt
@@ -107,7 +107,9 @@ $main_path/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
 #~/workspace/meteor/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
 
 echo "graph..."
-cp $main_path/plot_v0.2.py /tmp/ttt_output.py
+echo "$DATEWrite"
+#cp $main_path/plot_plt_v0.2.py /tmp/ttt_output.py
+cp $main_path/plt_v0.2.py /tmp/ttt_output.py
 #cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
@@ -118,30 +120,65 @@ sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.py
 sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.py
 sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.py
 sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.py
+#sed -i "s:writetime/$DATEWrite:g" /tmp/ttt_output.py
 sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.py
 sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.py
 sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.py
-sed -i "s/main_path/$main_path/g" /tmp/ttt_output.py
+sed -i "s|main_path|$main_path|g" /tmp/ttt_output.py
+sed -i "s/folder/$folder/g" /tmp/ttt_output.py
+sed -i "s/OFFSET_TIME/$zero_t/g" /tmp/ttt_output.py
 
 #for i in 10 9 8 7 6 5 4 3 2 1 0; do
 for i in 9 8 7 6 5 4 3 2 1; do
 DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
 
-sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
+#sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
+sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.py
 done
+
+#################################################
+cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
+sed -i "s/folder/$folder/g" /tmp/ttt_output.plt
+sed -i "s/freq_base/$freq_base/g" /tmp/ttt_output.plt
+sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.plt
+sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.plt
+sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.plt
+sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.plt
+sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.plt
+sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.plt
+sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.plt
+
+for i in 10 9 8 7 6 5 4 3 2 1 0; do
+	DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
+
+	sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
+done
+
+if [ -d "~/workspace/meteor/meteor/WaveMeasure/data/$folder" ]; then
+	echo "save $DATE.png in $folder."
+else
+	mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
+#	mkdir ~/workspace/meteor/data/$folder
+	echo "make directory $folder."
+fi
+
+gnuplot /tmp/ttt_output.plt
+sleep 5
+#################################################
 
 #if [ -d "~/workspace/meteor/data/$folder" ]; then
 if [ -d "$main_path/data/$folder" ]; then
 	echo "save $DATE.png in $folder."
 else
 #mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
-mkdir $main_path/data/$folder
+	mkdir $main_path/data/$folder
 #	mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
 #	mkdir ~/workspace/meteor/data/$folder
 	echo "make directory $folder."
 fi
 
-gnuplot /tmp/ttt_output.plt
+#gnuplot /tmp/ttt_output.plt
+python3 /tmp/ttt_output.py
 sleep 5
 
 echo "end"
