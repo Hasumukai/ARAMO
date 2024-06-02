@@ -113,7 +113,8 @@ set ytics  norangelimit
 set ytics   ()
 set ztics border in scale 1,0.5 nomirror norotate  autojustify
 set ztics  norangelimit autofreq 
-unset x2tics
+#unset x2tics
+set x2tics
 unset y2tics
 set cbtics border in scale 1,0.5 mirror norotate  autojustify
 set cbtics  norangelimit autofreq 
@@ -138,7 +139,8 @@ set ylabel ""
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
-set yrange [ * : * ] noreverse writeback
+#set yrange [ * : * ] noreverse writeback
+set yrange [ * : * ] reverse writeback
 set y2range [ * : * ] noreverse writeback
 set zlabel "" 
 set zlabel  font "" textcolor lt -1 norotate
@@ -176,19 +178,22 @@ GNUTERM = "qt"
 I = {0.0, 1.0}
 VoxelDistance = 0.0
 
-set xtics scale 0  # 刻み線の長さ
-set ytics scale 0
-set x2tics format '' scale 0.01  # こちらもゼロにしたいがすると格子線まで消えてしまうので
-set y2tics format '' scale 0.01
-set link x2
-set link y2
-set mx2tics 2
-set my2tics 2
-set grid front mx2tics my2tics lw 1.5 lt -1 lc rgb 'black'
+#set xtics scale 0  # 刻み線の長さ
+#set ytics scale 0
+#set x2tics format '' scale 0.01  # こちらもゼロにしたいがすると格子線まで消えてしまうので
+#set y2tics format '' scale 0.01
+#set link x2
+#set link y2
+#set mx2tics 2
+#set my2tics 2
+#set grid front mx2tics my2tics lw 1.5 lt -1 lc rgb 'black'
 #set grid front lw 1.5 lt -1 lc rgb 'black'
+
+#set x2tics mirror
 
 ## Last datafile plotted: "test_data.dat"
 #plot "test_data.dat" matrix rowheaders columnheaders u 1:2:3 with image
-plot "test_data.dat" matrix rowheaders columnheaders w image not
+#plot "test_data.dat" matrix rowheaders columnheaders w image not
+plot "test_rmob.dat" matrix rowheaders columnheaders w image not
 #    EOF
 pause -1
