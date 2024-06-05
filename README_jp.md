@@ -1,7 +1,7 @@
 # ARAMO
 SDRを用いてLinux系で電波流星観測を記録するためのシステム
 
-##1.概要
+## 1.概要
 
 本内容は、
 Software Defined Radio (SDR)を用いた
