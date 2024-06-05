@@ -36,6 +36,7 @@ fi
 
 #~/workspace/meteor/AutoMeteorObervetion_RealTimeBase2.sh 2 $DATE_min $freq_base $freq_diff
 #/home/dietpi/workspace/meteor/WaveMeasure/AutoMeteorObervetion_RealTimeBase3.sh 2 $DATE_min $freq_base $cal_sym $freq_diff
-$main_path/AutoMeteorObervetion_RealTimeBase4.sh 2 $DATE_min $freq_base $cal_sym $freq_diff $main_path
+#$main_path/AutoMeteorObervetion_RealTimeBase4.sh 2 $DATE_min $freq_base $cal_sym $freq_diff $main_path
+$main_path/AutoMeteorObervetion_RealTimeBase5.sh 2 $DATE_min $freq_base $cal_sym $freq_diff $main_path
 
 done

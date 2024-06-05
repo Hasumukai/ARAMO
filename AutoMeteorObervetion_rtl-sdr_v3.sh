@@ -18,3 +18,4 @@ freq=`echo "$freq_base * 1000000 $cal_sym $freq_diff" | bc -l`
 echo "$freq"
 
 rtl_fm -f $freq -M usb -s 200k -r 48k | aplay -r 48000 -f s16_LE
+#rtl_fm -f $freq -M cw -s 200k -r 48k | aplay -r 48000 -f s16_LE

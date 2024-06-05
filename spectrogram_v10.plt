@@ -153,8 +153,8 @@ set zlabel  font "" textcolor lt -1 norotate
 set zrange [ 40 : * ] noreverse writeback
 set cblabel "" 
 #set cblabel  font "" textcolor lt -1 rotate
-#set cbrange [ 15 : 110 ] noreverse nowriteback
-set cbrange [ 30 : 70 ] noreverse nowriteback
+set cbrange [ 30 : 110 ] noreverse nowriteback
+#set cbrange [ 30 : 70 ] noreverse nowriteback
 set rlabel "" 
 set rlabel  font "" textcolor lt -1 norotate
 set rrange [ * : * ] noreverse writeback
@@ -186,15 +186,16 @@ I = {0.0, 1.0}
 VoxelDistance = 0.0
 
 ## Last datafile plotted: "ttt.dat"
-set out "~/workspace/meteor/WaveMeasure/data/folder/outputfile.png"
+#set out "~/workspace/meteor/ARAMO/data/folder/gnuplot_outputfile.png"
+set out "~/workspace/meteor/ARAMO/data/folder/outputfile.png"
 set terminal png  size 629, 400 background rgb 'black' font "Helvetica,8"
-set label 1 at screen  0.05,0.98 "KROFFT" tc rgb "green"
+set label 1 at screen  0.05,0.98 "ARAMO" tc rgb "green"
 set label 2 at screen  0.05,0.95 "outputfile.png" tc rgb "yellow"
 set label 3 at screen  0.05,0.92 "writetime" tc rgb "yellow"
-set label 4 at screen  0.23,0.98 "Observer : Name" tc rgb "yellow"
+set label 4 at screen  0.23,0.98 "Observer : Hasumukai" tc rgb "yellow"
 set label 5 at screen  0.23,0.95 "receving Location : Kiryu, Gunma, Japan" tc rgb "yellow"
 set label 6 at screen  0.23,0.92 "Recever : RTL2832U (freq_base MHz cal_sym freq_diff Hz) USB" tc rgb "yellow"
-set label 7 at screen  0.23,0.89 "Receving antenna : Loop anttena" tc rgb "yellow"
+set label 7 at screen  0.23,0.89 "Receving antenna : Loop antenna" tc rgb "yellow"
 set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
 set label 9 at screen  0.095,0.82 "t1" tc rgb "yellow"

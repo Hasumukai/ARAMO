@@ -3,6 +3,8 @@
 #v4:
 #図のpythonプログラムで書く方式に変更
 #パスをまとめる -> main_path
+#v5:
+#サーバへ自動送信する機能を追加:auto_sftp_v1.sh
 
 TIME=600
 SRATE=120000
@@ -170,15 +172,17 @@ sleep 5
 #################################################
 
 #if [ -d "~/workspace/meteor/data/$folder" ]; then
-if [ -d "$main_path/data/$folder" ]; then
-	echo "save $DATE.png in $folder."
-else
-#mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
-	mkdir $main_path/data/$folder
-#	mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
-#	mkdir ~/workspace/meteor/data/$folder
-	echo "make directory $folder."
-fi
+#if [ -d "$main_path/data/$folder" ]; then
+#	echo "save $DATE.png in $folder."
+#else
+##mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
+#	mkdir $main_path/data/$folder
+##	mkdir /home/dietpi/workspace/meteor/WaveMeasure/data/$folder
+##	mkdir ~/workspace/meteor/data/$folder
+#	echo "make directory $folder."
+#fi
+
+$main_path/auto_sftp_v1.sh $folder $DATE $main_path
 
 #gnuplot /tmp/ttt_output.plt
 #python3 /tmp/ttt_output.py
