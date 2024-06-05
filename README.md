@@ -1,5 +1,5 @@
-# KROFFT
- system using SDR for radio meteor observation on Linux.
+# ARAMO
+Auto RAdio Meteor Observation system using SDR on Linux.
 
 1. Outline
 
