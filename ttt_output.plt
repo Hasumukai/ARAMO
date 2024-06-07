@@ -251,7 +251,8 @@ unset xtics
 unset x2tics
 plot \
 300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
-"Meteor_intensity1.dat" usi ($1+0):($2/3) with boxes ti "" lc rgb "#55ff55"
+"Meteor_intensity1.dat" usi ($1+0):($2/3<300?$2/3:1/0) with boxes ti "" lc rgb "#555555",\
+"Meteor_intensity1.dat" usi ($1+0):($2/3>=300?$2/3:1/0) with boxes ti "" lc rgb "#5555ff"
 
 unset multiplot
 #    EOF
