@@ -1,0 +1,4 @@
+Observer : Hasumukai
+receving Location : Kiryu, Gunma, Japan
+Recever : RTL2832U (89.1 MHz - 600 Hz) USB
+Receving antenna : Loop antenna

@@ -1,5 +1,10 @@
-
+build-essential
+gcc
+rtl-sdr
 pulseaudio
+pavucontrol
+sox
+
 sudo apt install at-spi2-core
 
 
