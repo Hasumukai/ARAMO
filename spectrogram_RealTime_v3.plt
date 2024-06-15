@@ -2,9 +2,9 @@
 #
 #    
 #    	G N U P L O T
-#    	Version 5.4 patchlevel 4    last modified 2022-07-10 
+#    	Version 5.2 patchlevel 8    last modified 2019-12-01 
 #    
-#    	Copyright (C) 1986-1993, 1998, 2004, 2007-2022
+#    	Copyright (C) 1986-1993, 1998, 2004, 2007-2019
 #    	Thomas Williams, Colin Kelley and many others
 #    
 #    	gnuplot home:     http://www.gnuplot.info
@@ -15,7 +15,6 @@
 unset clip points
 set clip one
 unset clip two
-unset clip radial
 set errorbars front 1.000000 
 set border 31 front lt black linewidth 1.000 dashtype solid
 set zdata 
@@ -24,7 +23,6 @@ set xdata
 set y2data 
 set x2data 
 set boxwidth
-set boxdepth 0
 set style fill  empty border
 set style rectangle back fc  bgnd fillstyle   solid 1.00 border lt -1
 set style circle radius graph 0.02 
@@ -45,41 +43,37 @@ unset grid
 unset raxis
 set theta counterclockwise right
 set style parallel front  lt black linewidth 2.000 dashtype solid
-set key notitle
+set key title "" center
 set key fixed right top vertical Right noreverse enhanced autotitle nobox
 set key noinvert samplen 4 spacing 1 width 0 height 0 
 set key maxcolumns 0 maxrows 0
 set key noopaque
 unset label
 unset arrow
+set style increment default
 unset style line
 unset style arrow
 set style histogram clustered gap 2 title textcolor lt -1
-unset object
-unset walls
-set style textbox  transparent margins  1.0,  1.0 border  lt -1 linewidth  1.0
+#unset object
+set style textbox transparent margins  1.0,  1.0 border  lt -1 linewidth  1.0
 set offsets 0, 0, 0, 0
 set pointsize 1
 set pointintervalbox 1
 set encoding default
 unset polar
 unset parametric
-unset spiderplot
 unset decimalsign
 unset micro
 unset minussign
-set view 0, 0, 1, 1
-#set view azimuth 0
+set view map scale 1
 set rgbmax 255
 set samples 100, 100
 set isosamples 10, 10
-set surface implicit
-set surface
+set surface 
 unset contour
 set cntrlabel  format '%8.3g' font '' start 5 interval 20
 set mapping cartesian
 set datafile separator whitespace
-set datafile nocolumnheaders
 unset hidden3d
 set cntrparam order 4
 set cntrparam linear
@@ -108,19 +102,12 @@ set mrtics default
 set nomttics
 set xtics border in scale 1,0.5 mirror norotate  autojustify
 #set xtics  norangelimit autofreq 
-set xtics  norangelimit
-set xtics  0,60,600
-set x2tics border in scale 1,0.5 nomirror norotate  autojustify
-set x2tics  norangelimit
-set xtics textcolor rgb "yellow"
-set x2tics textcolor rgb "yellow"
-set x2tics 0,60,600
-
+#set xtics  60
 set ytics border in scale 1,0.5 mirror norotate  autojustify
 set ytics  norangelimit autofreq 
 set ztics border in scale 1,0.5 nomirror norotate  autojustify
 set ztics  norangelimit autofreq 
-#unset x2tics
+unset x2tics
 unset y2tics
 set cbtics border in scale 1,0.5 mirror norotate  autojustify
 set cbtics  norangelimit autofreq 
@@ -140,21 +127,28 @@ set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
 set xrange [ * : * ] noreverse writeback
+#set xrange [ 0 : 600 ] noreverse writeback
 set x2range [ * : * ] noreverse writeback
 set ylabel "" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
 set yrange [ 0 : 600 ] noreverse writeback
-set y2range [ * : * ] noreverse writeback
+#set yrange [ 700 : 1100 ] noreverse writeback
+#set yrange [ 0 : 1000 ] noreverse writeback
+set y2range [ 0 : 600 ] noreverse writeback
 set zlabel "" 
 set zlabel  font "" textcolor lt -1 norotate
-#set zrange [ 15 : * ] noreverse writeback
-set zrange [ 40 : * ] noreverse writeback
+#set zrange [ * : * ] noreverse writeback
+set zrange [ 30 : * ] noreverse writeback
+#set zrange [ 50 : * ] noreverse writeback
+#set zrange [ 0 : 100 ] noreverse writeback
 set cblabel "" 
-#set cblabel  font "" textcolor lt -1 rotate
-set cbrange [ 30 : 110 ] noreverse nowriteback
-#set cbrange [ 30 : 70 ] noreverse nowriteback
+set cblabel  font "" textcolor lt -1 rotate
+#set cbrange [ 20 : 100 ] noreverse writeback
+#set cbrange [ * : * ] noreverse writeback
+#set cbrange [ 30 : 60 ] noreverse writeback
+set cbrange [ 30 : 100 ] noreverse writeback
 set rlabel "" 
 set rlabel  font "" textcolor lt -1 norotate
 set rrange [ * : * ] noreverse writeback
@@ -167,56 +161,51 @@ set rmargin  -1
 set tmargin  -1
 set locale "C.UTF-8"
 set pm3d explicit at s
+#set locale "en_US.UTF-8"
+#set pm3d implicit at b
 set pm3d scansautomatic
 set pm3d interpolate 1,1 flush begin noftriangles noborder corners2color mean
-set pm3d clip z 
 set pm3d nolighting
 set palette positive nops_allcF maxcolors 0 gamma 1.5 color model RGB 
 #set palette rgbformulae 7, 5, 15
+#set palette gray
+#set palette polar
+#set palette rgbformulae 33,13,10
 set palette defined ( 0 '#000090',1 '#000fff',2 '#0090ff',3 '#0fffee',4 '#90ff70',5 '#ffee00',6 '#ff7000',7 '#ee0000',8 '#7f0000')
 set colorbox default
 set colorbox vertical origin screen 0.9, 0.2 size screen 0.05, 0.6 front  noinvert bdefault
 set style boxplot candles range  1.50 outliers pt 7 separation 1 labels auto unsorted
 set loadpath 
-set fontpath
+set fontpath 
 set psdir
 set fit brief errorvariables nocovariancevariables errorscaling prescale nowrap v5
 GNUTERM = "qt"
-I = {0.0, 1.0}
-VoxelDistance = 0.0
-
 ## Last datafile plotted: "ttt.dat"
-#set out "~/workspace/meteor/ARAMO/data/20240615/gnuplot_20240615180.png"
-set out "20240615180.png"
-set terminal png  size 629, 400 background rgb 'black' font "Helvetica,8"
-set label 1 at screen  0.05,0.98 "ARAMO" tc rgb "green"
-set label 2 at screen  0.05,0.95 "20240615180.png" tc rgb "yellow"
-set label 3 at screen  0.05,0.92 "2024/06/15 18:0" tc rgb "yellow"
-set label 4 at screen  0.23,0.98 "Observer : Hasumukai\n receving Location : Kiryu, Gunma, Japan\n Recever : RTL2832U (89.1 MHz - 600 Hz) USB\n Receving antenna : Loop antenna\n " tc rgb "yellow"
-#set label 4 at screen  0.23,0.98 "Observer : Hasumukai" tc rgb "yellow"
-#set label 5 at screen  0.23,0.95 "receving Location : Kiryu, Gunma, Japan" tc rgb "yellow"
-#set label 6 at screen  0.23,0.92 "Recever : RTL2832U (freq_base MHz cal_sym freq_diff Hz) USB" tc rgb "yellow"
-#set label 7 at screen  0.23,0.89 "Receving antenna : Loop antenna" tc rgb "yellow"
-set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
-set label 9 at screen  0.095,0.82 "18:01" tc rgb "yellow"
-set label 10 at screen 0.191,0.82 "18:02" tc rgb "yellow"
-set label 11 at screen 0.287,0.82 "18:03" tc rgb "yellow"
-set label 12 at screen 0.383,0.82 "18:04" tc rgb "yellow"
-set label 13 at screen 0.479,0.82 "18:05" tc rgb "yellow"
-set label 14 at screen 0.576,0.82 "18:06" tc rgb "yellow"
-set label 15 at screen 0.672,0.82 "18:07" tc rgb "yellow"
-set label 16 at screen 0.768,0.82 "18:08" tc rgb "yellow"
-set label 17 at screen 0.864,0.82 "18:09" tc rgb "yellow"
-set label 18 at screen 0.96,0.82 "18:10" tc rgb "yellow"
+set tics out
 
-set label 19 at screen 0.001,0.80 "1.1" tc rgb "yellow"
-set label 20 at screen 0.001,0.61 "1.0" tc rgb "yellow"
-set label 21 at screen 0.001,0.42 "0.9" tc rgb "yellow"
-set label 22 at screen 0.001,0.23 "0.8" tc rgb "yellow"
-set label 23 at screen 0.001,0.045 "0.7" tc rgb "yellow"
+set terminal qt 0  enhanced font "Helvetica,8"
+set object 1 rect behind from screen 0,0 to screen 1,1 back fc rgb "#000000" fs solid
+set label 1 at screen  0.05,0.98 "KROFFT" tc rgb "green"
+set label 2 at screen  0.05,0.95 "outputfile.png" tc rgb "yellow"
+set label 3 at screen  0.05,0.92 "writetime" tc rgb "yellow"
+set label 4 at screen  0.23,0.98 "obs_setting" tc rgb "yellow"
+#set label 4 at screen  0.23,0.98 "Observer : Name" tc rgb "yellow"
+#set label 5 at screen  0.23,0.95 "receving Location : XX (XX.XE XX.XN)" tc rgb "yellow"
+#set label 6 at screen  0.23,0.92 "Recever : XX (89.4MHz - 900Hz) USB" tc rgb "yellow"
+#set label 7 at screen  0.23,0.89 "Receving antenna : XX" tc rgb "yellow"
+#set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
-set multiplot layout 2,1
+set label 9 at screen  0.095,0.82 "t1" tc rgb "yellow"
+set label 10 at screen 0.191,0.82 "t2" tc rgb "yellow"
+set label 11 at screen 0.287,0.82 "t3" tc rgb "yellow"
+set label 12 at screen 0.383,0.82 "t4" tc rgb "yellow"
+set label 13 at screen 0.479,0.82 "t5" tc rgb "yellow"
+set label 14 at screen 0.576,0.82 "t6" tc rgb "yellow"
+set label 15 at screen 0.672,0.82 "t7" tc rgb "yellow"
+set label 16 at screen 0.768,0.82 "t8" tc rgb "yellow"
+set label 17 at screen 0.864,0.82 "t9" tc rgb "yellow"
+set label 18 at screen 0.96,0.82 "t10" tc rgb "yellow"
 
 set lmargin screen 0.03
 set rmargin screen 0.9864
@@ -226,35 +215,24 @@ set tics out
 unset border
 set link x2
 set format x ""
-set format y "%1.1f"
-set ytics 0.1 textcolor rgb "yellow"
-set ytics offset 1.9, 0
+#set format y "%1.1f"
+set format y ""
+#set ytics 0.1 textcolor rgb "yellow"
+#set ytics offset 1.9, 0
 set ticscale 0.3
-set mytics 5
+#set mytics 5
+set ytics 60
 set border 0 lc rgb 'yellow'
 set x2tics axis ("" 0)
-#set pm3d map
-#splot "/tmp/spectrogram1.dat" usi ($1+24):($2*1e-3):3 with pm3d ti ""
+#set format x2 "" 
 set view 180,90
-splot "spectrogram2.dat" with pm3d ti ""
+splot "/tmp/spectrogram.dat" with pm3d ti ""
+#splot "/tmp/spectrogram.dat" usi ($1):($2*1e-3):3 with pm3d ti ""
 
-set lmargin screen 0.03
-set rmargin screen 0.9864
-set tmargin screen 0.072
-set bmargin screen 0.00
-unset border 
-set tics in
-set yrange [0:900]
-unset ytics
-set ylabel ''
-unset xtics
-unset x2tics
-plot \
-300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
-"Meteor_intensity2.dat" usi 0:($1/3<300?$1/3:1/0) with boxes ti "" lc rgb "#555555",\
-"Meteor_intensity2.dat" usi 0:($1/3>=300?$1/3:1/0) with boxes ti "" lc rgb "#55ff55"
-
-#"/tmp/Meteor_intensity1.dat" usi ($1+24):($2/3) with boxes ti "" lc rgb "#55ff55"
-
-unset multiplot
 #    EOF
+
+if (exist("i") == 0 || i < 0) i = 1     #もしiが定義されていない,もしくはi<0の時,i=0と定義
+i = i + 1     #カウントアップ
+pause 1     #停止時間の調整
+reset     #setしたものをリセット
+if(i <= loop_number) reread     #600secまで繰り返す 600/5=120

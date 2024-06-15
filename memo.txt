@@ -4,6 +4,7 @@ rtl-sdr
 pulseaudio
 pavucontrol
 sox
+bc
 
 sudo apt install at-spi2-core
 

@@ -139,13 +139,13 @@ set xlabel ""
 set xlabel  font "" textcolor lt -1 norotate
 set x2label "" 
 set x2label  font "" textcolor lt -1 norotate
-set xrange [ 0 : 600 ] noreverse writeback
-set x2range [ 0 : 600 ] noreverse writeback
+set xrange [ * : * ] noreverse writeback
+set x2range [ * : * ] noreverse writeback
 set ylabel "" 
 set ylabel  font "" textcolor lt -1 rotate
 set y2label "" 
 set y2label  font "" textcolor lt -1 rotate
-set yrange [ * : * ] noreverse writeback
+set yrange [ 0 : 600 ] noreverse writeback
 set y2range [ * : * ] noreverse writeback
 set zlabel "" 
 set zlabel  font "" textcolor lt -1 norotate
@@ -249,10 +249,13 @@ unset ytics
 set ylabel ''
 unset xtics
 unset x2tics
+offset_b=0
+div=50
+inten(x)=(x-offset_b)/div
 plot \
 300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
-"/tmp/Meteor_intensity.dat" usi 0:($1/3) with boxes ti "" lc rgb "#555555",\
-"/tmp/Meteor_intensity.dat" usi 0:($1/3) with boxes ti "" lc rgb "#55ff55"
+"/tmp/Meteor_intensity.dat" usi 0:(inten($1)<300?inten($1):1/0) with boxes ti "" lc rgb "#555555",\
+"/tmp/Meteor_intensity.dat" usi 0:(inten($1)>=300?inten($1):1/0) with boxes ti "" lc rgb "#55ff55"
 
 #"/tmp/Meteor_intensity.dat" usi ($1+zero_t):($2/3) with boxes ti "" lc rgb "#55ff55"
 

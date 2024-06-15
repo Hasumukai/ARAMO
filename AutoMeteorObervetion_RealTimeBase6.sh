@@ -75,20 +75,23 @@ N=`expr 599 - $zero_t`
 ##cp ~/workspace/meteor/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 ##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 #cp $main_path/spectrogram_RealTime_v2.plt /tmp/ttt.plt
-#sed -i "s/outputfile/$DATE/g" /tmp/ttt.plt
-#sed -i "s|writetime|$DATEWrite|g" /tmp/ttt.plt
-#sed -i "s/zero_t/$zero_t/g" /tmp/ttt.plt
-#sed -i "s/loop_number/$N/g" /tmp/ttt.plt
-#sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt.plt
-#
-#for i in 10 9 8 7 6 5 4 3 2 1 0; do
-#DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
-#
-#sed -i "s/t$i/$DATE_add/g" /tmp/ttt.plt
-#done
+cp $main_path/spectrogram_RealTime_v3.plt /tmp/ttt.plt
+sed -i "s/outputfile/$DATE/g" /tmp/ttt.plt
+sed -i "s|writetime|$DATEWrite|g" /tmp/ttt.plt
+sed -i "s/zero_t/$zero_t/g" /tmp/ttt.plt
+sed -i "s/loop_number/$N/g" /tmp/ttt.plt
+sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt.plt
 
-sleep 3
-#gnuplot ttt.plt &
+$main_path/plt_sed.sh $main_path /tmp/ttt.plt
+
+for i in 10 9 8 7 6 5 4 3 2 1 0; do
+DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
+
+sed -i "s/t$i/$DATE_add/g" /tmp/ttt.plt
+done
+
+sleep 2
+gnuplot ttt.plt &
 
 fpStart=0
 
@@ -108,7 +111,7 @@ $main_path/fftw3_spectrogram_Realtime_v0.3 /tmp/$FILE $fpStart $start_freq $end_
 
 done
 #/home/dietpi/workspace/meteor/WaveMeasure/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
-$main_path/block_sum_v0.3 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
+$main_path/block_sum_v0.4 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
 #~/workspace/meteor/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
 
 echo "graph..."
