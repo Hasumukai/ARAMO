@@ -6,15 +6,12 @@ pavucontrol
 sox
 bc
 
-sudo apt install at-spi2-core
-
-
 mkdir data
 
-chmod 777 AutoMeteorObervetion_RealTime_Remote_v2.sh
-chmod 777 AutoMeteorObervetion_RealTime2_v5.sh
-chmod 777 AutoMeteorObervetion_rtl-sdr_v3.sh
-chmod 777 AutoMeteorObervetion_RealTimeBase4.sh
-chmod 777 AutoMeteorObervetion_RealTime1_v5.sh
+chmod 777 AutoMeteorObervetion_RealTime_Remote_vX.sh
+chmod 777 AutoMeteorObervetion_rtl-sdr_vX.sh
+chmod 777 AutoMeteorObervetion_RealTime1_vX.sh
+chmod 777 AutoMeteorObervetion_RealTime2_vX.sh
+chmod 777 AutoMeteorObervetion_RealTimeBaseX.sh
 
 pip3 install matplotlib

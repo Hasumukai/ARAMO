@@ -186,7 +186,7 @@ set tics out
 
 set terminal qt 0  enhanced font "Helvetica,8"
 set object 1 rect behind from screen 0,0 to screen 1,1 back fc rgb "#000000" fs solid
-set label 1 at screen  0.05,0.98 "KROFFT" tc rgb "green"
+set label 1 at screen  0.05,0.98 "ARAMO" tc rgb "green"
 set label 2 at screen  0.05,0.95 "outputfile.png" tc rgb "yellow"
 set label 3 at screen  0.05,0.92 "writetime" tc rgb "yellow"
 set label 4 at screen  0.23,0.98 "obs_setting" tc rgb "yellow"

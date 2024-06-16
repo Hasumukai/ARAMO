@@ -210,11 +210,19 @@ set label 16 at screen 0.768,0.82 "t8" tc rgb "yellow"
 set label 17 at screen 0.864,0.82 "t9" tc rgb "yellow"
 set label 18 at screen 0.96,0.82 "t10" tc rgb "yellow"
 
-set label 19 at screen 0.001,0.80 "1.1" tc rgb "yellow"
-set label 20 at screen 0.001,0.61 "1.0" tc rgb "yellow"
-set label 21 at screen 0.001,0.42 "0.9" tc rgb "yellow"
-set label 22 at screen 0.001,0.23 "0.8" tc rgb "yellow"
-set label 23 at screen 0.001,0.045 "0.7" tc rgb "yellow"
+set label 19 at screen 0.001,0.80 "1.2" tc rgb "yellow"
+set label 20 at screen 0.001,0.674 "1.1" tc rgb "yellow"
+set label 21 at screen 0.001,0.548 "1.0" tc rgb "yellow"
+set label 22 at screen 0.001,0.422 "0.9" tc rgb "yellow"
+set label 23 at screen 0.001,0.297 "0.8" tc rgb "yellow"
+set label 24 at screen 0.001,0.171 "0.7" tc rgb "yellow"
+set label 25 at screen 0.001,0.045 "0.6" tc rgb "yellow"
+
+#set label 19 at screen 0.001,0.80 "1.1" tc rgb "yellow"
+#set label 20 at screen 0.001,0.61 "1.0" tc rgb "yellow"
+#set label 21 at screen 0.001,0.42 "0.9" tc rgb "yellow"
+#set label 22 at screen 0.001,0.23 "0.8" tc rgb "yellow"
+#set label 23 at screen 0.001,0.045 "0.7" tc rgb "yellow"
 
 set multiplot layout 2,1
 
@@ -225,12 +233,17 @@ set bmargin screen 0.048
 set tics out
 unset border
 set link x2
-set format x ""
-set format y "%1.1f"
-set ytics 0.1 textcolor rgb "yellow"
-set ytics offset 1.9, 0
+#set format x ""
+#set format y "%1.1f"
+#set ytics 0.1 textcolor rgb "yellow"
+#set ytics offset 1.9, 0
 set ticscale 0.3
-set mytics 5
+#set mytics 5
+set xtics 100
+set ytics 60
+set format x ""
+set format y ""
+set format z ""
 set border 0 lc rgb 'yellow'
 set x2tics axis ("" 0)
 #set pm3d map
@@ -249,9 +262,13 @@ unset ytics
 set ylabel ''
 unset xtics
 unset x2tics
+set boxwidth 1
 offset_b=0
-div=50
-inten(x)=(x-offset_b)/div
+integ=100 #Hz
+mean=14.6
+std=0.796
+#inten(x)=(x-offset_b)/div
+inten(x)=(x/integ-mean)*300/(std*4)+150
 plot \
 300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
 "/tmp/Meteor_intensity.dat" usi 0:(inten($1)<300?inten($1):1/0) with boxes ti "" lc rgb "#555555",\

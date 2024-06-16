@@ -186,29 +186,29 @@ I = {0.0, 1.0}
 VoxelDistance = 0.0
 
 ## Last datafile plotted: "ttt.dat"
-#set out "~/workspace/meteor/ARAMO/data/20240615/gnuplot_20240615180.png"
-set out "20240615180.png"
+#set out "~/workspace/meteor/ARAMO/data/20240616/gnuplot_202406161030.png"
+set out "202406161030.png"
 set terminal png  size 629, 400 background rgb 'black' font "Helvetica,8"
 set label 1 at screen  0.05,0.98 "ARAMO" tc rgb "green"
-set label 2 at screen  0.05,0.95 "20240615180.png" tc rgb "yellow"
-set label 3 at screen  0.05,0.92 "2024/06/15 18:0" tc rgb "yellow"
-set label 4 at screen  0.23,0.98 "Observer : Hasumukai\n receving Location : Kiryu, Gunma, Japan\n Recever : RTL2832U (89.1 MHz - 600 Hz) USB\n Receving antenna : Loop antenna\n " tc rgb "yellow"
+set label 2 at screen  0.05,0.95 "202406161030.png" tc rgb "yellow"
+set label 3 at screen  0.05,0.92 "2024/06/16 10:30" tc rgb "yellow"
+set label 4 at screen  0.23,0.98 "Observer : Hasumukai\n receving Location : Kiryu, Gunma, Japan\n Recever : RTL2832U (114.1 MHz - 900 Hz) USB\n Receving antenna : Loop antenna\n " tc rgb "yellow"
 #set label 4 at screen  0.23,0.98 "Observer : Hasumukai" tc rgb "yellow"
 #set label 5 at screen  0.23,0.95 "receving Location : Kiryu, Gunma, Japan" tc rgb "yellow"
 #set label 6 at screen  0.23,0.92 "Recever : RTL2832U (freq_base MHz cal_sym freq_diff Hz) USB" tc rgb "yellow"
 #set label 7 at screen  0.23,0.89 "Receving antenna : Loop antenna" tc rgb "yellow"
 set label 8 at screen  0.001,0.83 "kHz" tc rgb "yellow"
 
-set label 9 at screen  0.095,0.82 "18:01" tc rgb "yellow"
-set label 10 at screen 0.191,0.82 "18:02" tc rgb "yellow"
-set label 11 at screen 0.287,0.82 "18:03" tc rgb "yellow"
-set label 12 at screen 0.383,0.82 "18:04" tc rgb "yellow"
-set label 13 at screen 0.479,0.82 "18:05" tc rgb "yellow"
-set label 14 at screen 0.576,0.82 "18:06" tc rgb "yellow"
-set label 15 at screen 0.672,0.82 "18:07" tc rgb "yellow"
-set label 16 at screen 0.768,0.82 "18:08" tc rgb "yellow"
-set label 17 at screen 0.864,0.82 "18:09" tc rgb "yellow"
-set label 18 at screen 0.96,0.82 "18:10" tc rgb "yellow"
+set label 9 at screen  0.095,0.82 "10:31" tc rgb "yellow"
+set label 10 at screen 0.191,0.82 "10:32" tc rgb "yellow"
+set label 11 at screen 0.287,0.82 "10:33" tc rgb "yellow"
+set label 12 at screen 0.383,0.82 "10:34" tc rgb "yellow"
+set label 13 at screen 0.479,0.82 "10:35" tc rgb "yellow"
+set label 14 at screen 0.576,0.82 "10:36" tc rgb "yellow"
+set label 15 at screen 0.672,0.82 "10:37" tc rgb "yellow"
+set label 16 at screen 0.768,0.82 "10:38" tc rgb "yellow"
+set label 17 at screen 0.864,0.82 "10:39" tc rgb "yellow"
+set label 18 at screen 0.96,0.82 "10:40" tc rgb "yellow"
 
 set label 19 at screen 0.001,0.80 "1.1" tc rgb "yellow"
 set label 20 at screen 0.001,0.61 "1.0" tc rgb "yellow"
@@ -234,9 +234,10 @@ set mytics 5
 set border 0 lc rgb 'yellow'
 set x2tics axis ("" 0)
 #set pm3d map
-#splot "/tmp/spectrogram1.dat" usi ($1+24):($2*1e-3):3 with pm3d ti ""
+#splot "/tmp/spectrogram2.dat" usi ($1+0):($2*1e-3):3 with pm3d ti ""
 set view 180,90
-splot "spectrogram2.dat" with pm3d ti ""
+splot "/tmp/spectrogram2.dat" with pm3d ti ""
+#splot "/tmp/spectrogram2.dat" usi ($0+10):1:2 with pm3d ti ""
 
 set lmargin screen 0.03
 set rmargin screen 0.9864
@@ -249,12 +250,19 @@ unset ytics
 set ylabel ''
 unset xtics
 unset x2tics
+set boxwidth 1
+offset_b=0
+div=80
+mean=21871
+std=990
+#inten(x)=(x-offset_b)/div
+inten(x)=(x-mean)*300/(std*4)+150
 plot \
 300 w l lc rgb "white" ti "",600 w l lc rgb "white" ti "",900 w l lc rgb "white" ti "",\
-"Meteor_intensity2.dat" usi 0:($1/3<300?$1/3:1/0) with boxes ti "" lc rgb "#555555",\
-"Meteor_intensity2.dat" usi 0:($1/3>=300?$1/3:1/0) with boxes ti "" lc rgb "#55ff55"
+"/tmp/Meteor_intensity2.dat" usi 0:(inten($1)<300?inten($1):1/0) with boxes ti "" lc rgb "#555555",\
+"/tmp/Meteor_intensity2.dat" usi 0:(inten($1)>=300?inten($1):1/0) with boxes ti "" lc rgb "#55ff55"
 
-#"/tmp/Meteor_intensity1.dat" usi ($1+24):($2/3) with boxes ti "" lc rgb "#55ff55"
+#"/tmp/Meteor_intensity2.dat" usi ($1+0):($2/3) with boxes ti "" lc rgb "#55ff55"
 
 unset multiplot
 #    EOF

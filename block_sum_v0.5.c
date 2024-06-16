@@ -5,7 +5,7 @@
 //#define WS 1000 //window size
 #define FREQ_UNDER 850	//Hz
 #define FREQ_UPPER 950	//Hz
-#define THRESHOLD 40
+#define THRESHOLD 60
 #define N 256
 
 int main(int argc,char **argv){
@@ -31,15 +31,21 @@ int main(int argc,char **argv){
 			signal=atoi(str);
 			if(*str=='\n'){
 //				printf("%f %f\n",t,sum);
-				printf("%.1f\n",sum);
+				printf("%.1f\n",sum/(FREQ_UPPER-FREQ_UNDER));
 				sum=0;
 				freq_c=start_freq;
+//				printf("\n");
 //				t_old=t;
 //			}else if(FREQ_UNDER<=freq&&freq<=FREQ_UPPER&&THRESHOLD<signal)
-//			}else if(FREQ_UNDER<=freq_c&&freq_c<=FREQ_UPPER&&THRESHOLD<signal){
-			}else if(FREQ_UNDER<=freq_c&&freq_c<=FREQ_UPPER){
+			}else if(FREQ_UNDER<=freq_c&&freq_c<=FREQ_UPPER&&THRESHOLD<signal){
+//			}else if(FREQ_UNDER<=freq_c&&freq_c<=FREQ_UPPER){
 //			}else if(start_freq<=freq_c&&freq_c<=end_freq){
 				sum+=signal;
+//				if(THRESHOLD<signal)
+//					printf("%f\n",signal);
+//				else
+//					printf("0.0\n");
+
 			}
 			freq_c++;
 		}
