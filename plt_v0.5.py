@@ -4,11 +4,12 @@ from matplotlib.ticker import MaxNLocator,MultipleLocator,AutoMinorLocator
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 #x, y, z = np.loadtxt("/tmp/spectrogram.dat", unpack=True)
-z = np.loadtxt("spectrogram1.dat", unpack=True)
+z = np.loadtxt("/tmp/spectrogram.dat", unpack=True)
 print(z.shape)
 
 #x_bins, y_values = np.loadtxt("/tmp/Meteor_intensity.dat", unpack=True)
-y_values = np.loadtxt("Meteor_intensity2.dat", unpack=True)
+y_values = np.loadtxt("/tmp/Meteor_intensity.dat", unpack=True)
+y_values = 130*y_values
 
 #shape1=5	#1/0.2 [s]
 #shape1=3000	#600/0.2 [s]
@@ -47,16 +48,19 @@ fig.text(0.05, 0.99, 'ARAMO', ha='left', va='top',color="lawngreen")
 fig.text(0.05, 0.96, 'outputfile.png', ha='left', va='top',color="yellow")
 fig.text(0.05, 0.93, 'writetime', ha='left', va='top',color="yellow")
 
-fig.text(0.24, 0.99, 'Observer : Name', ha='left', va='top',color="yellow")
+fig.text(0.24, 0.99, 'Observer : Hasumukai', ha='left', va='top',color="yellow")
 fig.text(0.24, 0.96, 'Receving Location :  Kiryu, Gunma, Japan', ha='left', va='top',color="yellow")
-fig.text(0.24, 0.93, 'Recever : RTL2832U (freq_base MHz cal_sym freq_diff Hz) USB', ha='left', va='top',color="yellow")
+fig.text(0.24, 0.93, 'Recever : RTL2832U (88.1 MHz + 380 Hz) USB', ha='left', va='top',color="yellow")
 fig.text(0.24, 0.9, 'Receving antenna : Loop anttena', ha='left', va='top',color="yellow")
 
 #2Dのマップ
 #2Dのパラメータ
-ZMIN=40
+#ZMIN=50
+#VMIN=30
+#VMAX=300
+ZMIN=31
 VMIN=30
-VMAX=70
+VMAX=90
 #ZMIN=0
 #VMIN=0
 #VMAX=60
@@ -99,7 +103,7 @@ ax.get_yaxis().set_tick_params(pad=-2)
 ax.set_xlim([0,600])
 ##plt.xticks(np.arange(0,610,60),["","02:41","02:42","02:43","02:44","02:45","02:46","02:47","02:48","02:49",""])
 plt.xticks(np.arange(0,610,60),["","t1","t2","t3","t4","t5","t6","t7","t8","t9",""])
-plt.yticks(np.arange(0,1110,100),["","0.6","0.7","0.8","0.9","1.0","1.1","1.2","1.3","1.4","1.5","1.6"])
+plt.yticks(np.arange(0,610,100),["0.6","0.7","0.8","0.9","1.0","1.1","1.2"])
 #plt.gca().spines['right'].set_visible(False)
 #plt.gca().spines['top'].set_visible(False)
 #plt.gca().spines['bottom'].set_visible(False)
@@ -116,22 +120,26 @@ plt.yticks(np.arange(0,1110,100),["","0.6","0.7","0.8","0.9","1.0","1.1","1.2","
 ax_hist = fig.add_axes([0.03,0,0.95,0.075])
 #ax_hist=axes[1]
 #閾値以上の値は色を変える
-y_vli = y_values/5<=300
+y_vli = y_values<=300
 #print(y_vli)
 y_vl=y_values[y_vli]
-y_vhi = y_values/5>300
+y_vhi = y_values>300
 y_vh=y_values[y_vhi]
+yN=y_values.shape[0]
 
-x_bins=np.linspace(0,600,600)
-ax_hist.bar(x_bins[y_vli], y_vl/10, width=1, color='gray')
+x_bins=np.linspace(0,yN,yN)
+#x_bins=np.linspace(0,600,600)
+#if sum(y_vli)!=0:
+ax_hist.bar(x_bins[y_vli], y_vl, width=1, color='gray')
 #ax_hist.bar(x_bins[y_vhi], y_vh/10, width=1, ecolor='green')
-ax_hist.bar(x_bins[y_vhi], y_vh/10, width=1, color='yellowgreen')
+#if sum(y_vhi)!=0:
+ax_hist.bar(x_bins[y_vhi], y_vh, width=1, color='yellowgreen')
 #ax_hist.bar(y_values, width=1, ecolor='green')
 ax_hist.set_xlim([0,600])
 ax_hist.patch.set_alpha(0)  # subplotの背景透明度
 ax_hist.grid(axis="y", color="white")
 #ax_hist.tick_params(which='both',direction='out',colors="yellow")
-plt.yticks(np.arange(0,910,300))
+plt.yticks(np.arange(0,1210,300))
 plt.yticks(color="None")
 #plt.gca().spines['right'].set_visible(False)
 #plt.gca().spines['top'].set_visible(False)
@@ -141,5 +149,6 @@ plt.yticks(color="None")
 # 上下のグラフの隙間をなくす
 plt.subplots_adjust(hspace=.0)
 
-plt.savefig("outputfile.png")   # プロットしたグラフをPNG形式で保存する
+plt.savefig("main_path/data/folder/outputfile.png")   # プロットしたグラフをPNG形式で保存する
+#plt.savefig("outputfile.png")   # プロットしたグラフをPNG形式で保存する
 #plt.show()
