@@ -75,23 +75,23 @@ N=`expr 599 - $zero_t`
 ##cp ~/workspace/meteor/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 ##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_RealTime_v2.plt /tmp/ttt.plt
 #cp $main_path/spectrogram_RealTime_v2.plt /tmp/ttt.plt
-cp $main_path/spectrogram_RealTime_v3.plt /tmp/ttt.plt
-sed -i "s/outputfile/$DATE/g" /tmp/ttt.plt
-sed -i "s|writetime|$DATEWrite|g" /tmp/ttt.plt
-sed -i "s/zero_t/$zero_t/g" /tmp/ttt.plt
-sed -i "s/loop_number/$N/g" /tmp/ttt.plt
-sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt.plt
-
-$main_path/plt_sed.sh $main_path /tmp/ttt.plt
-
-for i in 10 9 8 7 6 5 4 3 2 1 0; do
-DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
-
-sed -i "s/t$i/$DATE_add/g" /tmp/ttt.plt
-done
+#cp $main_path/spectrogram_RealTime_v3.plt /tmp/ttt.plt
+#sed -i "s/outputfile/$DATE/g" /tmp/ttt.plt
+#sed -i "s|writetime|$DATEWrite|g" /tmp/ttt.plt
+#sed -i "s/zero_t/$zero_t/g" /tmp/ttt.plt
+#sed -i "s/loop_number/$N/g" /tmp/ttt.plt
+#sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt.plt
+#
+#$main_path/plt_sed.sh $main_path /tmp/ttt.plt
+#
+#for i in 10 9 8 7 6 5 4 3 2 1 0; do
+#DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
+#
+#sed -i "s/t$i/$DATE_add/g" /tmp/ttt.plt
+#done
 
 sleep 2
-gnuplot ttt.plt &
+#gnuplot ttt.plt &
 
 fpStart=0
 
@@ -111,59 +111,60 @@ $main_path/fftw3_spectrogram_Realtime_v0.3 /tmp/$FILE $fpStart $start_freq $end_
 
 done
 #/home/dietpi/workspace/meteor/WaveMeasure/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
-$main_path/block_sum_v0.4 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
+#$main_path/block_sum_v0.6 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
 #~/workspace/meteor/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
 
 echo "graph..."
 echo "$DATEWrite"
 ##cp $main_path/plot_plt_v0.2.py /tmp/ttt_output.py
-#cp $main_path/plt_v0.2.py /tmp/ttt_output.py
-##cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
-##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
-##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
-##cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v9.plt /tmp/ttt_output.plt
-#sed -i "s/folder/$folder/g" /tmp/ttt_output.py
-#sed -i "s/freq_base/$freq_base/g" /tmp/ttt_output.py
-#sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.py
-#sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.py
-#sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.py
-#sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.py
-##sed -i "s:writetime/$DATEWrite:g" /tmp/ttt_output.py
-#sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.py
-#sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.py
-#sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.py
-#sed -i "s|main_path|$main_path|g" /tmp/ttt_output.py
-#sed -i "s/folder/$folder/g" /tmp/ttt_output.py
-#sed -i "s/OFFSET_TIME/$zero_t/g" /tmp/ttt_output.py
-#
-##for i in 10 9 8 7 6 5 4 3 2 1 0; do
-#for i in 9 8 7 6 5 4 3 2 1; do
-#DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
-#
-##sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
-#sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.py
-#done
+#cp $main_path/plt_v0.5.py /tmp/ttt_output.py
+cp $main_path/plt_v0.7.py /tmp/ttt_output.py
+#cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
+#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
+#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
+#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v9.plt /tmp/ttt_output.plt
+sed -i "s/folder/$folder/g" /tmp/ttt_output.py
+sed -i "s/freq_base/$freq_base/g" /tmp/ttt_output.py
+sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.py
+sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.py
+sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.py
+sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.py
+#sed -i "s:writetime/$DATEWrite:g" /tmp/ttt_output.py
+sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.py
+sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.py
+sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.py
+sed -i "s|main_path|$main_path|g" /tmp/ttt_output.py
+sed -i "s/folder/$folder/g" /tmp/ttt_output.py
+sed -i "s/OFFSET_TIME/$zero_t/g" /tmp/ttt_output.py
+
+#for i in 10 9 8 7 6 5 4 3 2 1 0; do
+for i in 9 8 7 6 5 4 3 2 1; do
+DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
+
+#sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
+sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.py
+done
 
 #################################################
 #cp ~/workspace/meteor/KROFFT/spectrogram_v10.plt /tmp/ttt_output.plt
-cp $main_path/spectrogram_v11.plt /tmp/ttt_output.plt
-sed -i "s/folder/$folder/g" /tmp/ttt_output.plt
-#sed -i "s/freq_base/$freq_base/g" /tmp/ttt_output.plt
-#sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.plt
-#sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.plt
-sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.plt
-sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.plt
-sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.plt
-sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.plt
-sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.plt
-
-$main_path/plt_sed.sh $main_path /tmp/ttt_output.plt
-
-for i in 10 9 8 7 6 5 4 3 2 1 0; do
-	DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
-
-	sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
-done
+#cp $main_path/spectrogram_v11.plt /tmp/ttt_output.plt
+#sed -i "s/folder/$folder/g" /tmp/ttt_output.plt
+##sed -i "s/freq_base/$freq_base/g" /tmp/ttt_output.plt
+##sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_output.plt
+##sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_output.plt
+#sed -i "s/outputfile/$DATE/g" /tmp/ttt_output.plt
+#sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_output.plt
+#sed -i "s/zero_t/$zero_t/g" /tmp/ttt_output.plt
+#sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_output.plt
+#sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_output.plt
+#
+#$main_path/plt_sed.sh $main_path /tmp/ttt_output.plt
+#
+#for i in 10 9 8 7 6 5 4 3 2 1 0; do
+#	DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
+#
+#	sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
+#done
 
 #if [ -d "~/workspace/meteor/KROFFT/data/$folder" ]; then
 if [ -d "$main_path/data/$folder" ]; then
@@ -175,7 +176,8 @@ else
 	echo "make directory $folder."
 fi
 
-gnuplot /tmp/ttt_output.plt
+#gnuplot /tmp/ttt_output.plt
+python3 /tmp/ttt_output.py $start_freq $end_freq
 sleep 5
 #################################################
 
@@ -193,7 +195,6 @@ sleep 5
 $main_path/auto_sftp_v1.sh $folder $DATE $main_path
 
 #gnuplot /tmp/ttt_output.plt
-#python3 /tmp/ttt_output.py
 #sleep 5
 
 echo "end"

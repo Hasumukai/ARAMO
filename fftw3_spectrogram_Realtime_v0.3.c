@@ -112,8 +112,8 @@ void calc_fft(short *Ys,fftw_complex *in,fftw_complex *out,int start_freq,int en
 		t = out[i][1];		
 		u = sqrt(s*s + t*t)/1e4;
 //		printf("%f \t %d \t %.5lf\n", (float)(BlockNumber)*SHIFT_LENGTH/SRATE,i, u);
-//		printf("%.1lf ",u);
-		printf("%.1lf\n",u);
+		printf("%.1lf ",u);
+//		printf("%.1lf\n",u);
 	}
 
 	fftw_destroy_plan(p);
