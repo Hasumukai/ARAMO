@@ -212,7 +212,7 @@ for time in Meteor_time:
 	x_posi=time
 	ax_mark.plot(x_posi,y_posi,marker='v',markersize=5,color="lawngreen")
 #	fig.text(x_posi/600-0.01, 0.84, count, ha='left', va='top',color="yellow")
-	fig.text(x_posi/600+0.009, 0.84, count, ha='left', va='top',color="lawngreen")
+	fig.text(0.03+0.951*x_posi/600, 0.84, count, ha='left', va='top',color="lawngreen")
 	count+=1
 
 f=open("main_path/data/folder/outputfile.txt",'w')

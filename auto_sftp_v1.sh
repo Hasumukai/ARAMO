@@ -7,10 +7,10 @@ echo $outputfile
 month_dir=${outputfile:0:6}
 echo $month_dir
 
-$port=
-$keyPath=
-$userName=
-$hostName=
+port=
+keyPath=
+userName=
+hostName=
 
 sftp -P $port -i $keyPath $userName@$hostName << EOF
 

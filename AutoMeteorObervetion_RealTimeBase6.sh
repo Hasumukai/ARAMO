@@ -118,7 +118,8 @@ echo "graph..."
 echo "$DATEWrite"
 ##cp $main_path/plot_plt_v0.2.py /tmp/ttt_output.py
 #cp $main_path/plt_v0.5.py /tmp/ttt_output.py
-cp $main_path/plt_v0.7.py /tmp/ttt_output.py
+#cp $main_path/plt_v0.7.py /tmp/ttt_output.py
+cp $main_path/plt_v0.8.py /tmp/ttt_output.py
 #cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
