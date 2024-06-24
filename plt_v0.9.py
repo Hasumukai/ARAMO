@@ -138,22 +138,30 @@ ax.yaxis.set_ticks_position('both')
 
 ###強度のヒストグラム
 #make data
-measure_lower=850
-measure_upper=950
-L=z.shape[1]
-In=150
+#measure_lower=850
+#measure_upper=950
 #L=600
 #print(L)
 #print(range(0,600))
-yv=[]
-for i in range(0,L):
-#	print(i)
-#	yvn=In*sum(z[850-start_freq:950-start_freq,i])/(measure_upper-measure_lower)
-	zn=z[850-start_freq:950-start_freq,i]
-	yvn=In*sum(zn[zn>ZMIN])/(measure_upper-measure_lower)
-	yv.append(yvn)
-#print(yv)
+def intg(measure_lower,measure_upper,start_freq):
+	yv=[]
+	L=z.shape[1]
+	In=150
+	for i in range(0,L):
+	#	yvn=In*sum(z[850-start_freq:950-start_freq,i])/(measure_upper-measure_lower)
+		zn=z[measure_lower-start_freq:measure_upper-start_freq,i]
+		yvn=In*sum(zn[zn>ZMIN])/(measure_upper-measure_lower)
+		yv.append(yvn)
+	return yv
+	#print(yv)
+yv=intg(850,950,start_freq)
 y_values=np.array(yv)
+
+yv=intg(1080,1180,start_freq)	#high freq
+yh_values=np.array(yv)
+
+yv=intg(610,710,start_freq)	#low freq
+yl_values=np.array(yv)
 
 ax_hist = fig.add_axes([0.03,0,0.95,0.075])
 #ax_hist=axes[1]
@@ -167,18 +175,12 @@ y_vh=y_values[y_vhi]
 yN=y_values.shape[0]
 
 x_bins=np.linspace(0,yN,yN)
-#x_bins=np.linspace(0,600,600)
-#if sum(y_vli)!=0:
 ax_hist.bar(x_bins[y_vli], y_vl, width=1, color='gray')
-#ax_hist.bar(x_bins[y_vhi], y_vh/10, width=1, ecolor='green')
-#if sum(y_vhi)!=0:
 ax_hist.bar(x_bins[y_vhi], y_vh, width=1, color='yellowgreen')
-#ax_hist.bar(y_values, width=1, ecolor='green')
 ax_hist.set_xlim([0,600])
 ax_hist.set_ylim([0,910])
 ax_hist.patch.set_alpha(0)  # subplotの背景透明度
 ax_hist.grid(axis="y", color="white")
-#ax_hist.tick_params(which='both',direction='out',colors="yellow")
 plt.yticks(np.arange(0,1210,300))
 plt.yticks(color="None")
 #plt.gca().spines['right'].set_visible(False)
@@ -192,10 +194,13 @@ t_old=0
 Meteor_time=[]
 time=0
 for t in y_vhi:
+	yh=yh_values[time]
+	yl=yl_values[time]
 	#Now over and last under
 	if t==True and t_old==False:
-		MeteorN+=1
-		Meteor_time.append(time)
+		if yh<=THRESHOLD and yl<=THRESHOLD:
+			MeteorN+=1
+			Meteor_time.append(time)
 	t_old=t
 	time+=1
 print(MeteorN)
