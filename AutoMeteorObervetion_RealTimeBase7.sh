@@ -5,6 +5,7 @@
 #パスをまとめる -> main_path
 #v5:
 #サーバへ自動送信する機能を追加:auto_sftp_v1.sh
+#v6:
 
 TIME=600
 SRATE=120000
@@ -81,9 +82,9 @@ N=`expr 599 - $zero_t`
 #sed -i "s/zero_t/$zero_t/g" /tmp/ttt.plt
 #sed -i "s/loop_number/$N/g" /tmp/ttt.plt
 #sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt.plt
-#
+
 #$main_path/plt_sed.sh $main_path /tmp/ttt.plt
-#
+
 #for i in 10 9 8 7 6 5 4 3 2 1 0; do
 #DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
 #
@@ -103,7 +104,8 @@ for i in `seq 0 $N`; do
 
 fpStart=`expr $i \* $SRATE`
 #echo "$i $fpStart"
-$main_path/fftw3_spectrogram_Realtime_v0.3 /tmp/$FILE $fpStart $start_freq $end_freq >> /tmp/$Spectrogram
+#$main_path/fftw3_spectrogram_Realtime_v0.3 /tmp/$FILE $fpStart $start_freq $end_freq >> /tmp/$Spectrogram
+$main_path/fftw3_spectrogram_Realtime_v0.4 /tmp/$FILE $fpStart $start_freq $end_freq >> /tmp/$Spectrogram
 #$main_path/fftw3_spectrogram_Realtime /tmp/$FILE $fpStart >> /tmp/$Spectrogram
 #/home/dietpi/workspace/meteor/WaveMeasure/fftw3_spectrogram_Realtime /tmp/$FILE $fpStart >> /tmp/$Spectrogram
 #/home/dietpi/workspace/meteor/WaveMeasure/fftw3_spectrogram_Realtime_wide /tmp/$FILE $fpStart >> /tmp/$Spectrogram
@@ -111,16 +113,14 @@ $main_path/fftw3_spectrogram_Realtime_v0.3 /tmp/$FILE $fpStart $start_freq $end_
 
 done
 #/home/dietpi/workspace/meteor/WaveMeasure/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
-#$main_path/block_sum_v0.6 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
+#$main_path/block_sum_v0.4 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
+$main_path/block_sum_v0.6 /tmp/$Spectrogram $start_freq $end_freq > /tmp/$Meteor_intensity
 #~/workspace/meteor/block_sum /tmp/$Spectrogram > /tmp/$Meteor_intensity
 
 echo "graph..."
 echo "$DATEWrite"
 ##cp $main_path/plot_plt_v0.2.py /tmp/ttt_output.py
-#cp $main_path/plt_v0.5.py /tmp/ttt_output.py
-#cp $main_path/plt_v0.7.py /tmp/ttt_output.py
-#cp $main_path/plt_v0.8.py /tmp/ttt_output.py
-cp $main_path/plt_v0.9.py /tmp/ttt_output.py
+cp $main_path/plt_v0.5.py /tmp/ttt_output.py
 #cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
 #cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
@@ -146,25 +146,6 @@ DATE_add=`date -d "$DATE_base $i minute" "+%H:%M"`
 #sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.plt
 sed -i "s/t$i/$DATE_add/g" /tmp/ttt_output.py
 done
-
-cp $main_path/search_v0.1.py /tmp/ttt_search.py
-#cp $main_pass/spectrogram_v10.plt /tmp/ttt_output.plt
-#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
-#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v10.plt /tmp/ttt_output.plt
-#cp /home/dietpi/workspace/meteor/WaveMeasure/spectrogram_v9.plt /tmp/ttt_output.plt
-sed -i "s/folder/$folder/g" /tmp/ttt_search.py
-#sed -i "s/freq_base/$freq_base/g" /tmp/ttt_search.py
-#sed -i "s/cal_sym/$cal_sym/g" /tmp/ttt_search.py
-#sed -i "s/freq_diff/$freq_diff/g" /tmp/ttt_search.py
-sed -i "s/outputfile/$DATE/g" /tmp/ttt_search.py
-#sed -i "s|writetime|$DATEWrite|g" /tmp/ttt_search.py
-#sed -i "s:writetime/$DATEWrite:g" /tmp/ttt_output.py
-#sed -i "s/zero_t/$zero_t/g" /tmp/ttt_search.py
-sed -i "s/spectrogram.dat/$Spectrogram/g" /tmp/ttt_search.py
-#sed -i "s/Meteor_intensity.dat/$Meteor_intensity/g" /tmp/ttt_search.py
-sed -i "s|main_path|$main_path|g" /tmp/ttt_search.py
-sed -i "s/folder/$folder/g" /tmp/ttt_search.py
-#sed -i "s/OFFSET_TIME/$zero_t/g" /tmp/ttt_search.py
 
 #################################################
 #cp ~/workspace/meteor/KROFFT/spectrogram_v10.plt /tmp/ttt_output.plt
@@ -198,8 +179,7 @@ else
 fi
 
 #gnuplot /tmp/ttt_output.plt
-python3 /tmp/ttt_output.py $start_freq $end_freq
-python3 /tmp/ttt_search.py $start_freq $end_freq
+python3 /tmp/ttt_output.py
 sleep 5
 #################################################
 

@@ -3,12 +3,19 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator,MultipleLocator,AutoMinorLocator
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import sys
+#課題
+#集計する周波数を可視化する。
 
 start_freq=int(sys.argv[1])
 end_freq=int(sys.argv[2])
 
+VMIN=20
+VMAX=80
+ZMIN=VMIN+1
+
 #x, y, z = np.loadtxt("/tmp/spectrogram.dat", unpack=True)
 z = np.loadtxt("/tmp/spectrogram.dat", unpack=True)
+#z=z/3
 print(z.shape)
 
 #x_bins, y_values = np.loadtxt("/tmp/Meteor_intensity.dat", unpack=True)
@@ -72,9 +79,6 @@ f.close()
 #ZMIN=50
 #VMIN=30
 #VMAX=300
-ZMIN=41
-VMIN=40
-VMAX=80
 #ZMIN=0
 #VMIN=0
 #VMAX=60
@@ -163,7 +167,7 @@ yh_values=np.array(yv)
 yv=intg(610,710,start_freq)	#low freq
 yl_values=np.array(yv)
 
-ax_hist = fig.add_axes([0.03,0,0.95,0.075])
+ax_hist = fig.add_axes([0.03,0,0.954,0.075])
 #ax_hist=axes[1]
 #閾値以上の値は色を変える
 THRESHOLD=300

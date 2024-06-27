@@ -1,0 +1,22 @@
+111.6 MHz - 900 Hz
+111599100.0
+Found 1 device(s):
+  0:  Realtek, RTL2838UHIDIR, SN: 00000001
+
+Using device 0: Generic RTL2832U OEM
+Detached kernel driver
+Found Rafael Micro R820T tuner
+Tuner gain set to automatic.
+Tuned to 111899100 Hz.
+Oversampling input by: 6x.
+Oversampling output by: 1x.
+Buffer size: 6.83ms
+Allocating 15 zero-copy buffers
+Sampling at 1200000 S/s.
+Output at 200000 Hz.
+Playing raw data 'stdin' : Signed 16 bit Little Endian, Rate 48000 Hz, Mono
+underrun!!! (at least 328.303 ms long)
+Signal caught, exiting!
+
+User cancel, exiting...
+Reattached kernel driver
