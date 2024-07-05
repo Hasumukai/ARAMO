@@ -10,7 +10,7 @@ start_freq=int(sys.argv[1])
 end_freq=int(sys.argv[2])
 
 VMIN=20
-VMAX=80
+VMAX=60
 ZMIN=VMIN+1
 
 #x, y, z = np.loadtxt("/tmp/spectrogram.dat", unpack=True)
@@ -119,6 +119,11 @@ ax.get_yaxis().set_tick_params(pad=-2)
 ax.set_xlim([0,600])
 plt.xticks(np.arange(0,610,60),["","t1","t2","t3","t4","t5","t6","t7","t8","t9",""])
 
+
+measure_freq_low=850
+measure_freq_high=950
+#ax.vlines(1, measure_freq_low-start_freq, measure_freq_high-start_freq, color='g', linestyles='dotted')
+ax.vlines(1, measure_freq_low-start_freq, measure_freq_high-start_freq, color='g')
 y_tic=np.arange(start_freq,end_freq+10,100)/1000
 plt.yticks(np.arange(0,end_freq-start_freq+10,100),y_tic)
 ## [Y軸(補助)] 20刻みで補助目盛りを設定する
@@ -158,7 +163,7 @@ def intg(measure_lower,measure_upper,start_freq):
 		yv.append(yvn)
 	return yv
 	#print(yv)
-yv=intg(850,950,start_freq)
+yv=intg(measure_freq_low,measure_freq_high,start_freq)
 y_values=np.array(yv)
 
 yv=intg(1080,1180,start_freq)	#high freq
