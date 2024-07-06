@@ -12,7 +12,7 @@ class DrawFig:
 		end_freq=ef
 		
 		self.VMIN=25
-		self.VMAX=60
+		self.VMAX=70
 		self.ZMIN=self.VMIN+1
 #		self.DataName="spectrogram2.dat"
 
@@ -61,7 +61,8 @@ class DrawFig:
 		ax.set_ylabel("")
 		ax.get_yaxis().set_tick_params(pad=-2)
 		ax.set_xlim([0,300])
-		plt.xticks(np.arange(0,610,60),["","23:51","23:52","23:53","23:54","23:55","23:56","23:57","23:58","23:59",""])
+#		plt.xticks(np.arange(0,610,60),["","23:51","23:52","23:53","23:54","23:55","23:56","23:57","23:58","23:59",""])
+		plt.xticks(np.arange(0,610,60),["","t1","t2","t3","t4","t5","t6","t7","t8","t9",""])
 		
 		
 #		plt_sf=0	#300
@@ -177,6 +178,8 @@ aramo_base.load_data(DataName)
 
 FreqWidth=600
 for plt_sf in range(0,end_freq-start_freq,FreqWidth):
+	if plt_sf+FreqWidth > end_freq:
+		plt_sf=end_freq-FreqWidth
 	print(plt_sf)
 	#plt_sf=0	#300
 	plt_ef=FreqWidth+plt_sf	#900
